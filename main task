@@ -1,0 +1,389 @@
+1.  Приветствовать любого пользователя при вводе его имени через командную строку.
+
+
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("What's your name?");
+        Scanner scan = new Scanner(System.in);
+        String name = scan.next();
+        System.out.println("Hello, " + name);
+        scan.close();
+    }
+}
+Для начала нужно скомпилировать программу в консоли (терминал) с помощью оптимизирующего компилятора языкаjavac Main.java. После чего мы сможем запустить эту программу java Main.java
+
+
+2.     Отобразить в окне консоли аргументы командной строки в обратном порядке.
+
+import java.util.Scanner;
+
+public class T2 {
+    public static void main(String[] args) {
+        Scanner vvod = new Scanner(System.in);
+        for (int i = 0; true; i++) {
+            StringBuffer toll = new StringBuffer(vvod.nextLine());
+            toll.reverse();
+            System.out.println("Hello " + toll.toString());
+        }
+    }
+}
+
+
+3.     Вывести заданное количество случайных чисел с переходом и без перехода на новую строку
+
+public class T3 {
+    public static void main(String[] args) {
+
+        //( Math.random() * (b-a) ) + a
+
+        int a = 0; // Начальное значение диапазона - "от"
+        int b = 209; // Конечное значение диапазона - "до"
+        for (int i = 0; i < 10; i++) {
+            int random_number1 = a + (int) (Math.random() * b);
+            System.out.print(" " + random_number1);
+        }
+    }
+}
+
+
+c переходом
+
+public class T3a {
+        public static void main(String[] args) {
+            for (int i = 0; i < args.length; i++) {
+                System.out.println(args[i]);
+            }
+        }
+    }
+
+
+
+4.    Ввести целые числа как аргументы командной строки, подсчитать их сумму (произведение) и вывести результат на консоль.
+import java.util.Scanner;
+
+public class T4 {
+    public static void main(String[] args) {
+        Scanner vvod = new Scanner(System.in);
+        for (int i = 0; true; i++) {
+            int x = vvod.nextInt();
+            int y = vvod.nextInt();
+
+            System.out.println("Sum= " + (x + y));
+            System.out.println("Mutli= " + (x * y));
+        }
+    }
+}
+
+
+
+
+5.   Ввести число от 1 до 12. Вывести на консоль название месяца, соответствующего данному числу. Осуществить проверку корректности ввода чисел.
+
+import java.util.Scanner;
+
+public class Month {
+    static void setMonth(int a) {
+        String[] month = {"January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"};
+        String s;
+        try {
+            s = month[a - 1];
+            System.out.println("This is the month - " + s + ".");
+
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("\n" +
+                    "This month does not exist");
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter month number: ");
+        int n = sc.nextInt();
+        setMonth(n);
+    }
+}
+
+Для успешного выполнения задания достаточно реализовать 2-4 пункта.
+
+Задание. Ввести n чисел с консоли.
+1.     Найти самое короткое и самое длинное число. Вывести найденные числа и их длину.
+package com.company;
+import java.util.Scanner;
+
+
+public class lenght {
+        public static void main(String[] args) {
+                    Scanner scan = new Scanner(System.in);
+                    String line = scan.nextLine();
+                    String longWord = "", shortWord = line;
+                    for (String s : line.split(" ")) {
+                        if (s.length() > longWord.length()) longWord = s;
+                        if (s.length() < shortWord.length()) shortWord = s;
+                    }
+                    System.out.println("The longest word: '" + longWord + "'");
+                    System.out.println("Lenght: " + longWord.length());
+                    System.out.println("The shortest word: '" + shortWord + "'");
+                    System.out.println("Lenght: " + shortWord.length());
+                }
+            }
+
+2.     Вывести числа в порядке возрастания (убывания) значений их длины.
+
+
+package com.company;
+import java.util.Scanner;
+
+public class increase {
+
+    public static void main(String[] args) {
+        System.out.println("How many numbers you want to sort: ");
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        String[] userInput = new String[N];
+        System.out.println("Enter " + N + " numbers");
+        for (int i=0; i <N; i++){
+            userInput[i] = sc.nextLine();
+        }
+        for (int i = userInput.length-1; i > 0; i--) {
+            for (int j = 0; j < i; j++) {
+                if (userInput[j].length() > userInput[j+1].length()) {
+                    String temp = userInput[j];
+                    userInput[j] = userInput[j+1];
+                    userInput[j+1] = temp;
+                }
+            }
+        }
+        for(int i=0; i < userInput.length; i++){
+            System.out.println(userInput[i]);
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+3.     Вывести на консоль те числа, длина которых меньше (больше) средней длины по всем числам, а также длину.
+package com.company;
+import java.util.Scanner;
+
+public class Femalelogic {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        String line = scan.nextLine();
+        double avg = 0;
+        String[] arr = line.split(" ");
+        for (String s : arr) {
+            avg += s.length();
+        }
+        if (arr.length > 0) avg /= arr.length;
+        System.out.printf("Average length of entered numbers: %.2f", avg);
+        System.out.println("\nNumbers longer than average:");
+        for (String s : arr) {
+            if (s.length() > avg) System.out.println(s + " Length: " + s.length());
+        }
+        System.out.println("Numbers with length less than average:");
+        for (String s : arr) {
+            if (s.length() < avg) System.out.println(s + " Length: " + s.length());
+        }
+    }
+}
+
+
+
+
+
+
+Optional Task 2 
+В заднии достаточно выполнить 1-2 пункта.
+
+Задание. Ввести с консоли n - размерность матрицы a [n] [n]. Задать значения элементов матрицы в интервале значений от -M до M с помощью генератора случайных чисел (класс Random).
+1.     Упорядочить строки (столбцы) матрицы в порядке возрастания значений элементов k-го столбца (строки).
+
+
+
+
+
+package com.company;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Random1 {
+           public static void main(String[] args) {
+
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            try {
+                System.out.println("Enter the dimension of the matrix: ");
+                String n= br.readLine();
+                int m=Integer.valueOf(n).intValue();
+                System.out.println("Enter random boundaries: ");
+                String  Q= br.readLine();
+                int q=Integer.valueOf(Q).intValue();
+                String  W= br.readLine();
+                int w=Integer.valueOf(W).intValue();
+
+                System.out.println("Your matrix: ");
+                int[][] A = new int[m][m];
+                for (int i=0; i<m; i++)
+                {
+                    for (int j=0; j<m; j++)
+                    {
+                        A[i][j] = q+ (int) (Math.random()*((w-q)+1));
+                    }
+                }
+                for (int i=0; i<m; i++)
+                {
+                    for (int j=0; j<m; j++)
+                    {
+                        System.out.print( A[i][j]+" ");
+                    }
+                    System.out.print("\n");
+                }
+
+
+                System.out.println("Select a column: ");
+                String  E= br.readLine();
+                int e=Integer.valueOf(E).intValue();
+
+                System.out.println("Result:");
+
+                for (int i=0;  i<m; i++)
+                    for (int k=i+1; k < m; k++) {
+                        if (A[i][e] < A[k][e]){
+                            for (int j=0; j < m; j++) {
+                                int temp = A[i][j];
+                                A[i][j]=A[k][j];
+                                A[k][j]=temp;
+                            }
+                        }
+                    }
+
+
+
+                for (int i=0; i<m; i++)
+                {
+                    for (int j=0; j<m; j++)
+                    {
+                        System.out.print(A[i][j]+" ");
+                    }
+                    System.out.print("\n");
+                }
+            } catch (IOException r) {
+                System.out.println("input error " + r);
+            }
+            catch (NumberFormatException r) {
+                System.out.println("error of impossible string conversion to numeric format " + r);
+            }
+
+
+
+        }
+    }
+	
+	
+	
+	2.     Найти и вывести наибольшее число возрастающих (убывающих) элементов матрицы, идущих подряд.
+	package com.company;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+
+public class Random11 {
+    public static void main(String[] args) {
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        try {
+            System.out.println("Enter the dimension of the matrix: ");
+            String n = br.readLine();
+            int m = Integer.valueOf(n).intValue();
+            System.out.println("Enter random boundaries: ");
+            String Q = br.readLine();
+            int q = Integer.valueOf(Q).intValue();
+            String W = br.readLine();
+            int w = Integer.valueOf(W).intValue();
+
+            System.out.println("Your matrix: ");
+            int[][] A = new int[m][m];
+            for (int i = 0; i < m; i++) {
+                for (int j = 0; j < m; j++) {
+                    A[i][j] = q + (int) (Math.random() * ((w - q) + 1));
+                }
+            }
+            for (int i = 0; i < m; i++) {
+                for (int j = 0; j < m; j++) {
+                    System.out.print(A[i][j] + " ");
+                }
+                System.out.print("\n");
+            }
+
+
+
+      /*          System.out.println("Select a column: ");
+            String  E= br.readLine();
+            int e=Integer.valueOf(E).intValue();*/
+
+            System.out.println("Result:");
+
+            int[] s = new int[A.length * A.length]; // преобр. в одномерный массив
+            int max = 0;
+            int a = 0;
+            int r = 0;
+            int h = 0;
+            int u = 0;
+            int min = 0;
+            int h1 = 0;
+            for (int[] x : A) {
+                for (int z : x) {
+                    s[a++] = z;
+                }
+            }
+            for (int g = 0; g < s.length-1; g++) {
+                if (s[g] < s[g + 1]) {// если след.элемент больше
+                    r+= 1;
+                    if (r > max) {
+                        max = r;
+                        h = g + 1;
+                    } //запоминаем кол-во возрастаний и индекс последнего возраст.
+                } else {
+                    r = 0;
+                }// возрастание прервалось
+                if (s[g] > s[g + 1]) {
+                    u += 1;
+                    if (u > min) {
+                        min = u;
+                        h1 = g + 1;
+                    }//запоминаем кол-во возраст и индекс последн. убыв. элем.
+                } else {
+                    u = 0;
+                }//убывание прервалось
+            }
+
+            System.out.println("Maximum sequence of increasing numbers:");
+            int[]l=new int[max+1];
+            System.arraycopy(s,(h-max),l,0,(max+1));//копирую последовательность возр элем в новый массив
+            System.out.println(Arrays.toString(l)+" "+(max+1));
+            System.out.println("Maximum sequence of decreasing numbers:");
+            int[]t=new int[min+1];
+            System.arraycopy(s,(h1-min+1),t,0,(min+1));//копирую последовательность убыв элем в новый массив
+            System.out.println(Arrays.toString(t)+" "+(min+1));
+                    } catch (IOException r) {
+            System.out.println("input error " + r);
+        }
+        catch (NumberFormatException r) {
+            System.out.println("error of impossible string conversion to numeric format " + r);
+        }
+    }
+}
